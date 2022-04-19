@@ -1,49 +1,53 @@
 {
-  "name": "unit-7-react-redux",
-  "version": "1.1.0",
-  "description": "Simon's Solo Project - Map",
+  "name": "solo-project",
+  "version": "1.0.0",
+  "description": "CodeSmith Solo Project - started Tuesday, April 19, 2022",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack serve --hot --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js",
+    "build": "export NODE_ENV=production; webpack",
+    "dev": "concurrently \"cross-env NODE_ENV=production nodemon server/server.js\" \"cross-env NODE_ENV=development webpack serve --open\""
   },
-   "nodemonConfig": {
+  "nodemonConfig": {
     "ignore": [
       "build",
       "client"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeeSimonH/Solo-Project.git"
+  },
+  "keywords": [],
   "author": "Simon Lee",
-  "license": "none",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeeSimonH/Solo-Project/issues"
+  },
+  "homepage": "https://github.com/LeeSimonH/Solo-Project#readme",
   "dependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-redux": "^7.2.2",
-    "redux": "^4.0.5",
-    "prop-types": "^15.6.1"
+    "ejs": "^3.1.6",
+    "express": "^4.12.3",
+    "mongoose": "^6.3.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
-    "@babel/preset-react": "^7.12.13",
-    "babel-loader": "^8.2.2",
-    "css-loader": "^5.1.2",
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
-    "isomorphic-fetch": "^3.0.0",
-    "mini-css-extract-plugin": "^2.6.0",
-    "nodemon": "^2.0.7",
-    "sass": "^1.50.0",
+    "nodemon": "^2.0.15",
+    "sass": "^1.50.1",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
-    "eslint": "^7.22.0",
-    "eslint-import-resolver-webpack": "^0.13.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.22.0",
-    "redux-devtools-extension": "^2.13.9",
     "webpack": "^5.72.0",
-    "webpack-cli": "^4.8.0",
+    "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
   }
 }
