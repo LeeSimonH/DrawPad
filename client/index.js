@@ -18,7 +18,7 @@ import store from './store';
 render(
   <Provider store={store}>
     <App />
-  </Provider>
+  </Provider>,
   // wrap the App in the Provider Component and pass in the store
-  document.getElementById('screen')
+  document.getElementById('contents')
 );
