@@ -4,15 +4,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { node } = require('webpack');
 
 module.exports = {
-  entry: path.join(__dirname, './src/index.js'),
+  entry: path.join(__dirname, './client/index.js'),
   output: {
-    path: path.resolve(__dirname + '/dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.js'),
+      template: './client/index.html',
       title: 'development',
+      inject: true,
     }),
     new MiniCssExtractPlugin(),
   ],
@@ -27,20 +28,24 @@ module.exports = {
     // },
     port: 8080,
     open: true,
+    hot: true,
+    // liveReload: true,
     compress: true,
     // watchContentBase: true,
   },
+  // resolve: {
+  //   extensions: ['.js', '.jsx', '.json'],
+  // },
   module: {
     rules: [
       { test: /\.txt$/, use: 'raw-loader' },
       {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.m?js$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['babel/plugin-proposal-object-rest-spread'],
           },
         },
       },
