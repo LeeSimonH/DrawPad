@@ -15,12 +15,12 @@ import * as actions from '../actions/actions';
 import store from '../store.js';
 
 // import from child components...
+import Thumbnail from '../components/Thumbnail';
 
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = (dispatch) => ({
-  createDrawing: (drawingId) =>
-    dispatch(actions.createDrawingActionCreator(drawingId)),
+const { newDrawingId, drawingList } = store.getState().drawings;
+const mapStateToProps = (state) => ({
+  newDrawingId: newDrawingId,
+  drawingList: drawingList,
 });
 
 class StorageContainer extends Component {
@@ -30,13 +30,30 @@ class StorageContainer extends Component {
 
   render() {
     console.log('StorageContainer props:', this.props);
-    // console.log(store.getState());
+    // destructure the array of drawings out of the props
+    const { drawingList } = this.props;
 
-    return (
-      <div className="container">
-        {/* previous drawings display (thumbnails) */}
-      </div>
-    );
+    // populate storage thumbnails with the drawings
+    const thumbnails = [];
+    // drawingList.forEach((drawing) => {
+    //   drawings.push(
+    //     <Drawing
+    //       className="thumbnail"
+    //       // key={newDrawingId}
+    //       // id={newDrawingId}
+    //     />
+    //   );
+    // });
+    for (let i = 0; i < 5; i++) {
+      thumbnails.push(
+        <Thumbnail
+          key={i}
+          // id={newDrawingId}
+        />
+      );
+    }
+
+    return <div id="storage">{thumbnails}</div>;
   }
 }
 

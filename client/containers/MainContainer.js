@@ -11,17 +11,11 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../store.js';
+// import { bindActionCreators } from 'redux';
 
 // import from child components...
 import DrawingContainer from './DrawingContainer';
-
-const { totalDrawings, lastDrawingId, drawingList } = store.getState().drawings;
-const mapStateToProps = (state) => ({
-  totalDrawings: totalDrawings,
-  lastDrawingId: lastDrawingId,
-  drawingList: drawingList,
-});
+import StorageContainer from './StorageContainer.js';
 
 class MainContainer extends Component {
   constructor(props) {
@@ -29,20 +23,13 @@ class MainContainer extends Component {
   }
 
   render() {
-    // console.log(store.getState());
-
-    const { totalDrawings, lastDrawingId, drawingList } = this.props;
-
     return (
-      <div className="container">
-        <DrawingContainer
-          totalDrawings={totalDrawings}
-          lastDrawingId={lastDrawingId}
-          drawingList={drawingList}
-        />
+      <div id="mainContainer">
+        <DrawingContainer />
+        <StorageContainer />
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, null)(MainContainer);
+export default MainContainer;

@@ -11,17 +11,23 @@
 
 import React from 'react';
 
-const DrawingCreator = (props) => (
-  // how do we create the circuit between the store and an input field?
-  // how do we update the store from a presentation component?
-  <div id="drawingCreator">
-    <h3>Create New Drawing</h3>
-    <label htmlFor="drawinginput">New Drawing Name:</label>
-    <input type="text" id="drawinginput" />
-    <button id="createDrawing" onClick={props.createDrawing}>
-      Create Drawing
-    </button>
-  </div>
-);
+const DrawingCreator = (props) => {
+  const { createDrawing, newDrawingId } = props;
+
+  return (
+    <div id="drawingCreator">
+      <form onSubmit={createDrawing}>
+        <input
+          id="new-drawing"
+          value="name your new drawing"
+          onChange={(e) => updateDrawingName(e.target.value)}
+        />
+        <button id="create-drawing" className="primary" type="submit">
+          Create Drawing
+        </button>
+      </form>
+    </div>
+  );
+};
 
 export default DrawingCreator;

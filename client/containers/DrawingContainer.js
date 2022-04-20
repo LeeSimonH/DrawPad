@@ -12,22 +12,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
+import { bindActionCreators } from 'redux';
 import store from '../store.js';
 
 // import from child components...
 import Drawing from '../components/Drawing';
 import DrawingCreator from '../components/DrawingCreator.js';
 
-// const { totalDrawings, lastDrawingId, drawingList } = this.props;
+const { newDrawingId } = store.getState().drawings;
+const mapStateToProps = (state) => ({ newDrawingId: newDrawingId });
 
-const mapStateToProps = (state) => ({
-  // lastDrawingId: lastDrawingId,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  createDrawing: (drawingId) =>
-    dispatch(actions.createDrawingActionCreator(drawingId)),
-});
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
 
 class DrawingContainer extends Component {
   constructor(props) {
@@ -38,16 +33,17 @@ class DrawingContainer extends Component {
     console.log('DrawingContainer props:', this.props);
     // console.log(store.getState());
 
+    const { newDrawingId, createDrawing } = this.props;
     return (
-      <div className="container">
+      <div id="drawingContainer" className="container">
         <Drawing />
         <DrawingCreator
-          lastDrawingId={this.props.lastDrawingId}
-          createDrawing={this.props.createDrawing}
+          newDrawingId={newDrawingId}
+          createDrawing={createDrawing}
         />
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, null)(DrawingContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DrawingContainer);

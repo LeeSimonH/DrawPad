@@ -5,10 +5,10 @@ import MainContainer from './containers/MainContainer';
 // HIERARCHY
 // |-- App
 //   |-- MainContainer
-//      |-- Drawing Container
+//      |-- *Drawing Container
 //         |-- Drawing Creator
 //         |-- Drawing
-//      |-- Storage Container
+//      |-- *Storage Container
 //         |-- Previous Drawings
 
 // ---------------------------------------

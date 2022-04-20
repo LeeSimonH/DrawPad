@@ -12,9 +12,9 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  totalDrawings: 0,
   drawingList: [],
-  lastDrawingId: 10000,
+  newDrawingId: 10001,
+  newDrawingName: '',
 };
 
 const drawingsReducer = (state = initialState, action) => {
@@ -22,18 +22,39 @@ const drawingsReducer = (state = initialState, action) => {
     case types.CREATE_DRAWING:
       // create new drawing object from provided data
       const newDrawing = {
-        drawingId: action.payload,
+        drawingId: state.newDrawingId,
       };
 
       // push the new drawing onto a copy of the drawing list
-      newDrawingList = state.drawingList.slice(); // shallow copy of the drawing list array
+      const newDrawingList = state.drawingList.slice(); // shallow copy of the drawing list array
       newDrawingList.push(newDrawing); // push new drawing object onto list w/ ID
+
+      console.log('new drawing created!');
 
       return {
         ...state,
         drawingList: newDrawingList,
-        totalDrawings: state.totalDrawings + 1,
-        lastDrawingId: state.lastDrawingId + 1,
+        newDrawingId: state.newDrawingId + 1,
+      };
+
+    case types.DELETE_DRAWING:
+      // get the id of the drawing to be deleted
+      const targetDrawingId = action.payload;
+
+      // find the drawing in the drawing list
+
+      // delete the drawing from the market list
+      const shortenedDrawingList = state.drawingList.slice();
+
+      return {
+        ...state,
+        drawingList: shortenedDrawingList,
+      };
+
+    case types.UPDATE_DRAWING_NAME:
+      return {
+        ...state,
+        newDrawingName: action.payload,
       };
 
     default: {
