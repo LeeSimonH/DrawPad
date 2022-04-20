@@ -14,18 +14,14 @@ import { connect } from 'react-redux';
 import store from '../store.js';
 
 // import from child components...
-import Drawing from '../components/Drawing';
+import DrawingContainer from './DrawingContainer';
 
-// ---------------------------------------
-// HIERARCHY
-// |-- App
-//   |-- MainContainer
-//      |-- Drawing Container
-//         |-- Drawing
-
-// ---------------------------------------
-
-const mapStateToProps = (state) => ({});
+const { totalDrawings, lastDrawingId, drawingList } = store.getState().drawings;
+const mapStateToProps = (state) => ({
+  totalDrawings: totalDrawings,
+  lastDrawingId: lastDrawingId,
+  drawingList: drawingList,
+});
 
 class MainContainer extends Component {
   constructor(props) {
@@ -35,11 +31,15 @@ class MainContainer extends Component {
   render() {
     // console.log(store.getState());
 
+    const { totalDrawings, lastDrawingId, drawingList } = this.props;
+
     return (
       <div className="container">
-        <div className="outerBox">
-          <h1 id="header">MegaMarket Loyalty Cards</h1>
-        </div>
+        <DrawingContainer
+          totalDrawings={totalDrawings}
+          lastDrawingId={lastDrawingId}
+          drawingList={drawingList}
+        />
       </div>
     );
   }

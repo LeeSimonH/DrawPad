@@ -12,11 +12,7 @@
 import React from 'react';
 
 const Drawing = (props) => {
-  return (
-    <div className="drawBoard">
-      <img src="../../docs/random map screenshot.jpg"></img>
-    </div>
-  );
+  return <div className="drawBoard"></div>;
 };
 
 export default Drawing;
