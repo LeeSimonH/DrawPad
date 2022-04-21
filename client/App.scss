@@ -11,13 +11,13 @@
 
 #app {
   padding: 2vw;
-  background-color: $paradise-pink;
+  background-color: $peach-crayola;
 }
 
 #mainContainer {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  column-gap: 1em;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 #drawingContainer {
@@ -25,6 +25,7 @@
 }
 
 #storage {
+  display: flex;
   grid-column: 1 2;
   background-color: $base-color;
   padding: 1em;
@@ -35,40 +36,51 @@
 }
 
 #drawingCreator {
-  padding: 1em;
-  background-color: $base-color;
-  margin-top: 10px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1em;
+  // background-color: $base-color;
   border-radius: .5em;
 
   > * {
     color: rgba(255, 255, 255, 0.793);
   }
   
+  button {
+    padding: .5em 1em;
+    border: 0;
+    border-radius: .5em;
+    background-color: $paradise-pink;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+  }
 }
 
-.container {
+.drawBoard {
   width: $grid-dims;
   height: $grid-dims;
-}
-
-#drawBoard {
   background-color: white;
   display: grid;
-  grid-template-rows: repeat($grid-resolution, 1fr);
+  grid-template: repeat($grid-resolution, 1fr) / repeat($grid-resolution, 1fr);
+
 }
 
 .row {
   width: 100%;
-  height: 20px;
+  height: 16px;
   display: grid;
   grid-template-columns: repeat($grid-resolution, 1fr);
 }
 
 .box {
   background-color: white;
-  width: 20px;
+  width: 16px;
   height: 100%;
-  border: .1px solid lightcyan;
+  // border: .1px solid lightcyan;
 }
 
 .filled {
@@ -77,28 +89,7 @@
 
 .thumbnail {
   background-color: white;
-  width: 100%;
+  width: 100px;
   height: 100px;
-}
-
-
-
-input {
-  margin: 10px;
-}
-
-label {
-  font-weight: bold;
-}
-
-button {
-  padding: .5em 1em;
-  margin: 3px;
-  border: 0;
-  border-radius: .5em;
-  background-color: $paradise-pink;
-}
-
-button:hover {
-  transform: scale(1.05);
+  grid-template: repeat($grid-resolution, 1fr) / repeat($grid-resolution, 1fr);
 }

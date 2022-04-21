@@ -13,11 +13,22 @@ import MainContainer from './containers/MainContainer';
 
 // ---------------------------------------
 
-export function App() {
+const App = (props) => {
   return (
     <div id="app">
-      <h1> Sketchbook </h1>
+      <h1>Sketchbook</h1>
       <MainContainer />
     </div>
   );
-}
+};
+
+export default App;
+
+// export function App() {
+//   return (
+//     <div id="app">
+//       <h1> Sketchbook </h1>
+//       <MainContainer />
+//     </div>
+//   );
+// }

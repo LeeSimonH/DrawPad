@@ -14,7 +14,7 @@
 
 export const CREATE_DRAWING = 'CREATE_DRAWING';
 export const DELETE_DRAWING = 'DELETE_DRAWING';
-export const UPDATE_DRAWING_NAME = 'UPDATE_DRAWING_NAME';
-export const FILL_BOX = 'FILL_BOX';
+export const SAVE_DRAWING = 'SAVE_DRAWING';
+export const CLEAR_DRAWING = 'CLEAR_DRAWING';
 export const SYNC_DRAWINGS = 'SYNC_DRAWINGS';
 export const LOAD_DRAWINGS = 'LOAD_DRAWINGS';

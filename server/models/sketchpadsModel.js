@@ -16,12 +16,25 @@ mongoose
 
 const Schema = mongoose.Schema;
 
-const sketchpadsSchema = new Schema({
-  name: String,
+const storageSchema = newSchema({
+  drawingList: Array,
+  newDrawingId: Number,
+  currentDrawing: {
+    type: Schema.Types.ObjectId,
+    ref: 'drawing',
+  },
+  synced: Boolean,
+});
+
+const drawingsSchema = new Schema({
   drawingId: Number,
   grid: Array,
 });
 
-const Sketchpads = mongoose.model('sketchpads', sketchpadsSchema);
+const Drawings = mongoose.model('drawing', drawingsSchema);
+const Storage = mongoose.model('storage', storageSchema);
 
-module.exports = Sketchpads;
+module.exports = {
+  Drawings,
+  Storage,
+};

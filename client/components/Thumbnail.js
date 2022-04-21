@@ -10,9 +10,10 @@
  */
 
 import React from 'react';
+import Grid from './Grid';
 
 const Thumbnail = (props) => {
-  return <div className="thumbnail"></div>;
+  <div className="thumbnail">{/* <Grid /> */}</div>;
 };
 
 export default Thumbnail;

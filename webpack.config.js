@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { node } = require('webpack');
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
       title: 'development',
       inject: true,
     }),
-    new MiniCssExtractPlugin(),
+    // new MiniCssExtractPlugin(),
   ],
   mode: process.env.NODE_ENV,
   devServer: {
@@ -23,19 +23,21 @@ module.exports = {
       directory: path.resolve(__dirname, 'dist'),
       publicPath: '/dist',
     },
-    proxy: {
-      '/drawings': 'http://localhost:3000',
-    },
+    // proxy: {
+    //   '/drawings': 'http://localhost:3000',
+    // },
     port: 8080,
     open: true,
-    hot: true,
+    // hot: true,
     // liveReload: true,
     compress: true,
     // watchContentBase: true,
   },
-  // resolve: {
-  //   extensions: ['.js', '.jsx', '.json'],
-  // },
+  resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react'),
+    },
+  },
   module: {
     rules: [
       { test: /\.txt$/, use: 'raw-loader' },

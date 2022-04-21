@@ -12,20 +12,24 @@
 import React from 'react';
 
 const DrawingCreator = (props) => {
-  const { createDrawing, newDrawingId, updateDrawingName } = props;
+  const { createDrawing, saveDrawing, clearDrawing } = props;
 
-  function handleChange(event) {
-    console.log(event.target.value);
+  function handleClick(e) {
+    e.preventDefault();
+    console.log('button clicked');
   }
 
   return (
     <div id="drawingCreator">
-      <form onSubmit={createDrawing}>
-        <input id="new-drawing" value="" onChange={handleChange} />
-        <button id="create-drawing" className="primary" type="submit">
-          Create Drawing
-        </button>
-      </form>
+      <button id="clear-drawing" onClick={clearDrawing}>
+        Clear Drawing
+      </button>
+      <button id="save-drawing" onClick={saveDrawing}>
+        Save Current Drawing
+      </button>
+      <button id="create-drawing" onClick={createDrawing}>
+        Create New Drawing
+      </button>
     </div>
   );
 };

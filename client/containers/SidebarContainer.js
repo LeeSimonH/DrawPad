@@ -15,10 +15,9 @@ import * as actions from '../actions/actions';
 import store from '../store.js';
 import { bindActionCreators } from 'redux';
 
-import DrawingCreator from '../components/DrawingCreator';
-
 // import from child components...
 import Thumbnail from '../components/Thumbnail';
+import DrawingCreator from '../components/DrawingCreator';
 
 const { newDrawingId, drawingList } = store.getState().drawings;
 const mapStateToProps = (state) => ({
@@ -28,34 +27,43 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
 
-class SidebarContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+const SidebarContainer = (props) => {
+  // destructure the array of drawings out of the props
+  const {
+    drawingList,
+    newDrawingId,
+    createDrawing,
+    saveDrawing,
+    clearDrawing,
+  } = props;
 
-  render() {
-    console.log('SidebarContainer props:', this.props);
-    // destructure the array of drawings out of the props
-    const { drawingList, newDrawingId, createDrawing, updateDrawingName } =
-      this.props;
+  // populate storage thumbnails with the drawings
+  const thumbnails = [];
 
-    // populate storage thumbnails with the drawings
-    const thumbnails = [];
-    for (let i = 0; i < 5; i++) {
-      thumbnails.push(<Thumbnail key={i} />);
+  const drawingListLastIndex = drawingList.length - 1;
+
+  if (drawingListLastIndex >= 0) {
+    for (let i = drawingListLastIndex; i <= 0; i--) {
+      const drawing = drawingList[i];
+      thumbnails.push(<Thumbnail key={`${drawing.drawingId}`} />);
+      console.log('new thumbnail created');
     }
-
-    return (
-      <div id="storage">
-        {thumbnails}
-        <DrawingCreator
-          newDrawingId={newDrawingId}
-          createDrawing={createDrawing}
-          updateDrawingName={updateDrawingName}
-        />
-      </div>
-    );
   }
-}
+
+  console.log(thumbnails);
+
+  return (
+    <div id="storage">
+      <div id="thumbnails">{thumbnails}</div>
+
+      <DrawingCreator
+        currentDrawingId={newDrawingId - 1}
+        createDrawing={createDrawing}
+        saveDrawing={saveDrawing}
+        clearDrawing={clearDrawing}
+      />
+    </div>
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SidebarContainer);

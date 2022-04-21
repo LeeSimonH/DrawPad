@@ -14,32 +14,28 @@ import * as types from '../constants/actionTypes';
 
 export const createDrawing = (event) => (dispatch, getState) => {
   event.preventDefault();
-  const drawingName = getState().drawings.newDrawingName;
-  if (drawingName) {
+  const drawingId = getState().drawings.newDrawingId;
+  console.log(drawingId);
+  if (drawingId) {
     dispatch({
       type: types.CREATE_DRAWING,
-      payload: drawingName,
+      payload: drawingId,
     });
-  } else
-    dispatch({
-      type: types.CREATE_DRAWING,
-      payload: 'empty test',
-    });
+  }
 };
+
+export const saveDrawing = (drawingId) => ({
+  type: types.SAVE_DRAWING,
+  payload: drawingId,
+});
+
+export const clearDrawing = () => ({
+  type: types.CLEAR_DRAWING,
+});
 
 export const deleteDrawing = (drawingId) => ({
   type: types.DELETE_DRAWING,
   payload: drawingId,
-});
-
-export const updateDrawingName = (data) => ({
-  type: types.UPDATE_DRAWING_NAME,
-  payload: data,
-});
-
-export const fillBox = (boxId) => ({
-  type: types.FILL_BOX,
-  payload: boxId,
 });
 
 export const syncDrawings = () => (dispatch, getState) => {

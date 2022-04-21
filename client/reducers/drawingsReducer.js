@@ -14,29 +14,84 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   drawingList: [],
   newDrawingId: 10001,
-  newDrawingName: '',
+  currentDrawing: {},
   synced: true,
 };
+
+function getCurrentDrawingData() {
+  // get the current drawing from the DOM
+  const currentDrawing = document.querySelector('.drawBoard').firstElementChild;
+  // get true/false data on whether each box is filled or not
+  const data = {
+    drawingId: currentDrawing.id,
+    grid: [],
+  };
+  Array.from(currentDrawing.children).forEach((row) => {
+    const rowData = [];
+    Array.from(row.children).forEach((box) => {
+      rowData.push(Array.from(box.classList).join(''));
+    });
+    data.grid.push(rowData);
+  });
+  return data;
+}
+
+function clearCurrentDrawing() {
+  // get the current drawing from the DOM
+  const currentDrawing = document.querySelector('.drawBoard').firstElementChild;
+  // get true/false data on whether each box is filled or not
+  const data = {
+    drawingId: currentDrawing.id,
+    grid: [],
+  };
+  Array.from(currentDrawing.children).forEach((row) => {
+    const rowData = [];
+    Array.from(row.children).forEach((box) => {
+      box.classList.remove('filled');
+      rowData.push(Array.from(box.classList).join(''));
+    });
+    data.grid.push(rowData);
+  });
+  return data;
+}
 
 const drawingsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.CREATE_DRAWING:
+      // create matrix that represents the sketch grid
+      const blankGrid = [];
+      // 50 rows
+      for (let i = 1; i <= 50; i++) {
+        const rowArr = [];
+        // 50 boxes in each row
+        for (let j = 1; j <= 50; j++) {
+          // each box initially empty (filled = false)
+          rowArr.push(false);
+        }
+        blankGrid.push(rowArr);
+      }
+
+      // save the current drawing
+      const currentDrawingData = getCurrentDrawingData();
+
       // create new drawing object from provided data
       const newDrawing = {
         drawingId: state.newDrawingId,
-        name: action.payload,
+        grid: blankGrid,
       };
 
-      // push the new drawing onto a copy of the drawing list
-      const newDrawingList = state.drawingList.slice(); // shallow copy of the drawing list array
-      newDrawingList.push(newDrawing); // push new drawing object onto list w/ ID
+      // reset drawing board
 
-      console.log('new drawing created!');
+      console.log('current drawing saved, ');
+      console.log('and new drawing created!');
+      console.log(currentDrawingData);
 
       return {
         ...state,
-        drawingList: newDrawingList,
+        drawingList: state.drawingList.slice().concat(currentDrawingData),
+        // increment new drawing Id by 1 for next drawing
         newDrawingId: state.newDrawingId + 1,
+        currentDrawing: newDrawing,
         synced: false,
       };
 
@@ -54,20 +109,25 @@ const drawingsReducer = (state = initialState, action) => {
         drawingList: shortenedDrawingList,
       };
 
-    case types.UPDATE_DRAWING_NAME:
+    case types.SAVE_DRAWING:
+      const savedDrawingData = getCurrentDrawingData();
+
+      console.log(`drawing ${savedDrawingData.drawingId} saved`);
+
       return {
         ...state,
-        newDrawingName: action.payload,
+        // save current drawing into drawing list
+        currentDrawing: savedDrawingData,
+        synced: false,
       };
 
-    case types.FILL_BOX:
-      // get the box by its id
-      const boxId = action.payload;
-    // const boxToFill = state.drawingList[indexOfBox]
-    // set its "filled" property to be true
-    // boxToFill.filled = true;
-
-    // apply a style to it
+    case types.CLEAR_DRAWING:
+      const clearedDrawing = clearCurrentDrawing();
+      return {
+        ...state,
+        currentDrawingData: clearedDrawing,
+        synced: false,
+      };
 
     case types.SYNC_DRAWINGS:
       return {
@@ -76,10 +136,13 @@ const drawingsReducer = (state = initialState, action) => {
       };
 
     case types.LOAD_DRAWINGS:
+      const { currentDrawing, drawingList, newDrawingId } = action.payload;
+
       return {
         ...state,
-        drawingList: action.payload,
-        newDrawingId: action.payload[action.payload.length - 1].drawingId + 1,
+        drawingList: drawingList,
+        newDrawingId: newDrawingId,
+        currentDrawing: currentDrawing,
       };
 
     default: {

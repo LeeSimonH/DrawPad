@@ -11,21 +11,16 @@
 
 import React from 'react';
 
-const Box = (props) => {
+const Box = ({ id, boxVal }) => {
   let filled = false;
-  function fillBox(e) {
-    console.log('box filled!');
-    filled = true;
-  }
 
   return (
     <div
-      id={props.id}
-      className="box"
-      style={{
-        backgroundColor: filled ? 'black' : 'white',
+      id={id}
+      className={boxVal}
+      onMouseOver={(e) => {
+        e.target.classList.add('filled');
       }}
-      onClick={fillBox}
     ></div>
   );
 };

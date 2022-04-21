@@ -15,19 +15,13 @@ import React, { Component } from 'react';
 import DrawboardContainer from './DrawboardContainer';
 import SidebarContainer from './SidebarContainer.js';
 
-class MainContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div id="mainContainer">
-        <DrawboardContainer />
-        <SidebarContainer />
-      </div>
-    );
-  }
-}
+const MainContainer = () => {
+  return (
+    <div id="mainContainer">
+      <DrawboardContainer key="drawboard-container" />
+      <SidebarContainer />
+    </div>
+  );
+};
 
 export default MainContainer;

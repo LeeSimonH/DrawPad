@@ -18,27 +18,22 @@ import store from '../store.js';
 // import from child components...
 import Grid from '../components/Grid';
 
-const { newDrawingId } = store.getState().drawings;
-const mapStateToProps = (state) => ({ newDrawingId: newDrawingId });
+const { newDrawingId, currentDrawing } = store.getState().drawings;
+const mapStateToProps = (state) => ({
+  currentDrawing: currentDrawing,
+  newDrawingId: newDrawingId,
+});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
 
-class DrawBoardContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+const DrawboardContainer = (props) => {
+  const { newDrawingId, currentDrawing } = props;
+  console.log('current drawboard id:', newDrawingId);
+  return (
+    <div className="drawBoard">
+      <Grid key="grid" id={`${newDrawingId}`} currentDrawing={currentDrawing} />
+    </div>
+  );
+};
 
-  render() {
-    console.log('DrawBoard props:', this.props);
-    // console.log(store.getState());
-
-    const { newDrawingId, createDrawing } = this.props;
-    return (
-      <div className="container">
-        <Grid />
-      </div>
-    );
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DrawBoardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DrawboardContainer);
