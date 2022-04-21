@@ -17,6 +17,8 @@ mongoose
 const Schema = mongoose.Schema;
 
 const sketchpadsSchema = new Schema({
+  name: String,
+  drawingId: Number,
   grid: Array,
 });
 

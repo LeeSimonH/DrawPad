@@ -17,15 +17,16 @@ module.exports = {
     }),
     new MiniCssExtractPlugin(),
   ],
-  mode: process.env.NODE_ENV,
+  // mode: process.env.NODE_ENV,
+  mode: development,
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
       publicPath: '/dist',
     },
-    // proxy: {
-    //   '/api': 'http://localhost:3000',
-    // },
+    proxy: {
+      '/drawings': 'http://localhost:3000',
+    },
     port: 8080,
     open: true,
     hot: true,

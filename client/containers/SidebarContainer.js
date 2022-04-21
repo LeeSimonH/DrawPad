@@ -41,15 +41,6 @@ class SidebarContainer extends Component {
 
     // populate storage thumbnails with the drawings
     const thumbnails = [];
-    // drawingList.forEach((drawing) => {
-    //   drawings.push(
-    //     <Drawing
-    //       className="thumbnail"
-    //       // key={newDrawingId}
-    //       // id={newDrawingId}
-    //     />
-    //   );
-    // });
     for (let i = 0; i < 5; i++) {
       thumbnails.push(<Thumbnail key={i} />);
     }

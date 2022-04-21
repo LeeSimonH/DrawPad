@@ -15,6 +15,7 @@ const initialState = {
   drawingList: [],
   newDrawingId: 10001,
   newDrawingName: '',
+  synced: true,
 };
 
 const drawingsReducer = (state = initialState, action) => {
@@ -36,6 +37,7 @@ const drawingsReducer = (state = initialState, action) => {
         ...state,
         drawingList: newDrawingList,
         newDrawingId: state.newDrawingId + 1,
+        synced: false,
       };
 
     case types.DELETE_DRAWING:
@@ -66,6 +68,19 @@ const drawingsReducer = (state = initialState, action) => {
     // boxToFill.filled = true;
 
     // apply a style to it
+
+    case types.SYNC_DRAWINGS:
+      return {
+        ...state,
+        synced: true,
+      };
+
+    case types.LOAD_DRAWINGS:
+      return {
+        ...state,
+        drawingList: action.payload,
+        newDrawingId: action.payload[action.payload.length - 1].drawingId + 1,
+      };
 
     default: {
       return state;

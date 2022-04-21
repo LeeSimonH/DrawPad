@@ -14,6 +14,7 @@ import React from 'react';
 const Box = (props) => {
   let filled = false;
   function fillBox(e) {
+    console.log('box filled!');
     filled = true;
   }
 
@@ -24,7 +25,7 @@ const Box = (props) => {
       style={{
         backgroundColor: filled ? 'black' : 'white',
       }}
-      onMouseOver={fillBox}
+      onClick={fillBox}
     ></div>
   );
 };

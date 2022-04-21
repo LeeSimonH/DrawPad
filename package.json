@@ -19,6 +19,9 @@
     "type": "git",
     "url": "git+https://github.com/LeeSimonH/Solo-Project.git"
   },
+  "resolutions": {
+    "react-devtools-core": "4.14.0"
+  },
   "keywords": [],
   "author": "Simon Lee",
   "license": "ISC",
@@ -46,6 +49,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "axios": "^0.26.1",
     "babel-loader": "^8.2.5",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
@@ -57,7 +61,9 @@
     "mini-css-extract-plugin": "^2.6.0",
     "nodemon": "^2.0.15",
     "path": "^0.12.7",
+    "react-devtools-core": "^4.24.4",
     "redux-devtools": "^3.7.0",
+    "redux-thunk": "^2.4.1",
     "sass": "^1.50.1",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
