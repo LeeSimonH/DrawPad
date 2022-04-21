@@ -17,8 +17,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin(),
   ],
-  // mode: process.env.NODE_ENV,
-  mode: development,
+  mode: process.env.NODE_ENV,
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
@@ -56,14 +55,14 @@ module.exports = {
         // test: /\.scss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          // 'style-loader',
+          'style-loader',
 
           // -> not currently working
           // process.env.NODE_ENV === 'development'
           //   ? 'style-loader'
           //   : MiniCssExtractPlugin.loader,
 
-          MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader,
           // Translates CSS into CommonJS
           'css-loader',
           // Compiles Sass to CSS
