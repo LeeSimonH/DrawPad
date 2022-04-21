@@ -48,9 +48,27 @@
 
 .drawBoard {
   background-color: white;
-  width: 100%;
+  width: 600px;
   height: 600px;
-  // border-radius: 1em;
+  display: grid;
+  grid-template-rows: repeat(30, 1fr);
+
+  .row {
+    width: 100%;
+    height: 20px;
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+  
+    .box {
+      background-color: white;
+      width: 20px;
+      height: 100%;
+  
+      .filled {
+        background-color: $base-color;
+      }
+    }
+  }
 }
 
 .thumbnail {
@@ -58,6 +76,8 @@
   width: 100%;
   height: 100px;
 }
+
+
 
 input {
   margin: 10px;

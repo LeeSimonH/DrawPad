@@ -12,7 +12,7 @@
 // import actionType constants
 import * as types from '../constants/actionTypes';
 
-export const createDrawing = (dispatch, getState) => {
+export const createDrawing = (event) => (dispatch, getState) => {
   event.preventDefault();
   const drawingName = getState().drawings.newDrawingName;
   if (drawingName) {
@@ -31,4 +31,9 @@ export const deleteDrawing = (drawingId) => ({
 export const updateDrawingName = (data) => ({
   type: types.UPDATE_DRAWING_NAME,
   payload: data,
+});
+
+export const fillBox = (boxId) => ({
+  type: types.FILL_BOX,
+  payload: boxId,
 });

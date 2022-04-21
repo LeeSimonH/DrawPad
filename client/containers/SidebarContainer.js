@@ -53,7 +53,15 @@ class StorageContainer extends Component {
       );
     }
 
-    return <div id="storage">{thumbnails}</div>;
+    return (
+      <div id="storage">
+        {thumbnails}
+        <DrawingCreator
+          newDrawingId={newDrawingId}
+          createDrawing={createDrawing}
+        />
+      </div>
+    );
   }
 }
 
