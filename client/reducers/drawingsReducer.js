@@ -23,6 +23,7 @@ const drawingsReducer = (state = initialState, action) => {
       // create new drawing object from provided data
       const newDrawing = {
         drawingId: state.newDrawingId,
+        name: action.payload,
       };
 
       // push the new drawing onto a copy of the drawing list
@@ -56,6 +57,15 @@ const drawingsReducer = (state = initialState, action) => {
         ...state,
         newDrawingName: action.payload,
       };
+
+    case types.FILL_BOX:
+      // get the box by its id
+      const boxId = action.payload;
+    // const boxToFill = state.drawingList[indexOfBox]
+    // set its "filled" property to be true
+    // boxToFill.filled = true;
+
+    // apply a style to it
 
     default: {
       return state;

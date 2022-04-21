@@ -1,7 +1,7 @@
 /**
  * ************************************
  *
- * @module  StorageContainer
+ * @module  SidebarContainer
  * @author
  * @date
  * @description stateful component that renders ...
@@ -13,6 +13,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import store from '../store.js';
+import { bindActionCreators } from 'redux';
+
+import DrawingCreator from '../components/DrawingCreator';
 
 // import from child components...
 import Thumbnail from '../components/Thumbnail';
@@ -23,15 +26,18 @@ const mapStateToProps = (state) => ({
   drawingList: drawingList,
 });
 
-class StorageContainer extends Component {
+const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
+
+class SidebarContainer extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    console.log('StorageContainer props:', this.props);
+    console.log('SidebarContainer props:', this.props);
     // destructure the array of drawings out of the props
-    const { drawingList } = this.props;
+    const { drawingList, newDrawingId, createDrawing, updateDrawingName } =
+      this.props;
 
     // populate storage thumbnails with the drawings
     const thumbnails = [];
@@ -45,12 +51,7 @@ class StorageContainer extends Component {
     //   );
     // });
     for (let i = 0; i < 5; i++) {
-      thumbnails.push(
-        <Thumbnail
-          key={i}
-          // id={newDrawingId}
-        />
-      );
+      thumbnails.push(<Thumbnail key={i} />);
     }
 
     return (
@@ -59,10 +60,11 @@ class StorageContainer extends Component {
         <DrawingCreator
           newDrawingId={newDrawingId}
           createDrawing={createDrawing}
+          updateDrawingName={updateDrawingName}
         />
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, null)(StorageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarContainer);

@@ -10,12 +10,10 @@
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 
 // import from child components...
-import DrawingContainer from './DrawingContainer';
-import StorageContainer from './StorageContainer.js';
+import DrawboardContainer from './DrawboardContainer';
+import SidebarContainer from './SidebarContainer.js';
 
 class MainContainer extends Component {
   constructor(props) {
@@ -25,8 +23,8 @@ class MainContainer extends Component {
   render() {
     return (
       <div id="mainContainer">
-        <DrawingContainer />
-        <StorageContainer />
+        <DrawboardContainer />
+        <SidebarContainer />
       </div>
     );
   }

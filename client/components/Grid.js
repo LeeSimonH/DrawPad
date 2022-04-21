@@ -13,13 +13,13 @@
 import React from 'react';
 import Row from './Row';
 
-const SketchContainer = (props) => {
+const Grid = (props) => {
   // create 30 rows of 30 boxes
   const rows = [];
   for (let i = 1; i <= 30; i++) {
-    rows.push(<Row id={`${i}`} />);
+    rows.push(<Row id={`${i}`} key={`${i}`} />);
   }
   return <div id="drawboard">{rows}</div>;
 };
 
-export default SketchContainer;
+export default Grid;
