@@ -31,10 +31,10 @@ const drawingsSchema = new Schema({
   grid: Array,
 });
 
-const Drawings = mongoose.model('drawing', drawingsSchema);
-const Storage = mongoose.model('storage', storageSchema);
+const Drawing = mongoose.model('Drawing', drawingsSchema);
+const Storage = mongoose.model('Storage', storageSchema);
 
 module.exports = {
-  Drawings,
+  Drawing,
   Storage,
 };

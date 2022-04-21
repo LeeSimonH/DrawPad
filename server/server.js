@@ -6,25 +6,29 @@ const { sync } = require('./db/drawings');
 const db = require('./db/drawings');
 const port = process.env.PORT || 3000;
 
+import drawingRoutes from './routes/drawings.js';
+
 // statically serve everything in the build folder on the route '/dist'
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
 
-// // used to return the list of drawings
-app.get('/drawings', (req, res) => {
-  // res.json(db.find());
-  console.log(db.find());
-});
+app.use('/drawings', drawingRoutes);
 
-// used to save/update list of drawings
-app.put('/drawings', (req, res, next) => {
-  const syncResult = db.sync(req.body);
-  if (syncResult instanceof Error) {
-    return next({ code: 400, error: syncResult });
-  }
-  // res.json(syncResult);
-  console.log(syncResult);
-});
+// // // used to return the list of drawings
+// app.get('/drawings', (req, res) => {
+//   // res.json(db.find());
+//   console.log(db.find());
+// });
+
+// // used to save/update list of drawings
+// app.put('/drawings', (req, res, next) => {
+//   const syncResult = db.sync(req.body);
+//   if (syncResult instanceof Error) {
+//     return next({ code: 400, error: syncResult });
+//   }
+//   // res.json(syncResult);
+//   console.log(syncResult);
+// });
 
 // serve index.html on the route '/'
 app.get('/', (req, res) => {

@@ -35,6 +35,7 @@ const SidebarContainer = (props) => {
     createDrawing,
     saveDrawing,
     clearDrawing,
+    loadDrawings,
   } = props;
 
   // populate storage thumbnails with the drawings
@@ -45,7 +46,12 @@ const SidebarContainer = (props) => {
   if (drawingListLastIndex >= 0) {
     for (let i = drawingListLastIndex; i <= 0; i--) {
       const drawing = drawingList[i];
-      thumbnails.push(<Thumbnail key={`${drawing.drawingId}`} />);
+      thumbnails.push(
+        <Thumbnail
+          key={`${drawing.drawingId}`}
+          id={`thumnail-${drawing.drawingId}`}
+        />
+      );
       console.log('new thumbnail created');
     }
   }
@@ -61,6 +67,7 @@ const SidebarContainer = (props) => {
         createDrawing={createDrawing}
         saveDrawing={saveDrawing}
         clearDrawing={clearDrawing}
+        loadDrawings={loadDrawings}
       />
     </div>
   );

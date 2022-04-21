@@ -13,7 +13,7 @@ import React from 'react';
 import Grid from './Grid';
 
 const Thumbnail = (props) => {
-  <div className="thumbnail">{/* <Grid /> */}</div>;
+  <div className="thumbnail">{props.id.slice(-5)}</div>;
 };
 
 export default Thumbnail;

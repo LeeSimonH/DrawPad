@@ -11,6 +11,7 @@
 
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
+import * as api from '../api/index.js';
 
 export const createDrawing = (event) => (dispatch, getState) => {
   event.preventDefault();

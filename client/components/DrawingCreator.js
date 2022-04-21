@@ -12,12 +12,7 @@
 import React from 'react';
 
 const DrawingCreator = (props) => {
-  const { createDrawing, saveDrawing, clearDrawing } = props;
-
-  function handleClick(e) {
-    e.preventDefault();
-    console.log('button clicked');
-  }
+  const { loadDrawings, createDrawing, saveDrawing, clearDrawing } = props;
 
   return (
     <div id="drawingCreator">
@@ -29,6 +24,9 @@ const DrawingCreator = (props) => {
       </button>
       <button id="create-drawing" onClick={createDrawing}>
         Create New Drawing
+      </button>
+      <button id="load-drawing" onClick={loadDrawings}>
+        Load Drawings
       </button>
     </div>
   );
