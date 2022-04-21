@@ -12,13 +12,19 @@
 import React from 'react';
 
 const Box = (props) => {
+  let filled = false;
+  function fillBox(e) {
+    filled = true;
+  }
+
   return (
     <div
       id={props.id}
       className="box"
-      onMouseOver={(e) => {
-        e.target.className += 'filled';
+      style={{
+        backgroundColor: filled ? 'black' : 'white',
       }}
+      onMouseOver={fillBox}
     ></div>
   );
 };
